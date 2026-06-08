@@ -131,6 +131,39 @@ nav a:hover {
   color: var(--brand-gold);
 }
 
+.menu-toggle {
+  display: none;
+}
+
+.menu-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-burger span + span {
+  margin-top: 6px;
+}
+
+.main-nav {
+  display: flex;
+}
+
 /* BOTÕES */
 .btn {
   display: inline-block;
@@ -358,8 +391,9 @@ article img {
 }
 
 .card p {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+  color: var(--foreground);
+  opacity: 0.95;
 }
 
 /* HOVER (PC) */
@@ -440,14 +474,62 @@ footer p {
 /* RESPONSIVO */
 @media (max-width: 768px) {
   header .container {
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between;
+    position: relative;
   }
 
-  nav ul {
+  .menu-burger {
+    display: inline-flex;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--brand-dark);
+    padding: 18px 20px 20px;
+    display: none;
     flex-direction: column;
-    gap: 10px;
-    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav li {
+    width: 100%;
+  }
+
+  .main-nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .header-btn {
+    display: none;
+  }
+
+  .menu-toggle:checked + .menu-burger + .main-nav {
+    display: flex;
+  }
+
+  .menu-toggle:checked + .menu-burger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle:checked + .menu-burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle:checked + .menu-burger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .hero h2 {
